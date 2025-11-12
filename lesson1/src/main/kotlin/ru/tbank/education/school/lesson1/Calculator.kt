@@ -1,10 +1,20 @@
 package ru.tbank.education.school.lesson1
 
-/**
- * Метод для вычисления простых арифметических операций.
- */
-fun calculate(a: Double, b: Double, operation: OperationType): Double? {
-    TODO()
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
+
+fun calculate(a: Double, operation: OperationType? = OperationType.ADD, b: Double = 0.0): Double? {
+    return when (operation) {
+        OperationType.ADD -> a+b
+        OperationType.SUBTRACT -> a-b
+        OperationType.MULTIPLY -> a*b
+        OperationType.DIVIDE -> if (b == 0.0) null else a/b
+        OperationType.SIN -> sin(a)
+        OperationType.COS -> cos(a)
+        OperationType.SQRT -> sqrt(a)
+        else -> a+b
+    }
 }
 
 /**
@@ -14,5 +24,23 @@ fun calculate(a: Double, b: Double, operation: OperationType): Double? {
  */
 @Suppress("ReturnCount")
 fun String.calculate(): Double? {
-    TODO()
+    val array = this.split(" ")
+    val a = array[0].toDouble()
+    if (array.size == 2) {
+        val b = array[1].toDouble()
+        return a + b
+    } else {
+        val b = array[2].toDouble()
+        val op = array[1]
+        return when (op) {
+            "-" -> a-b
+            "*" -> a*b
+            "/" -> if (b == 0.0) null else a/b
+            else -> a+b
+        }
+    }
+}
+
+fun main() {
+
 }
