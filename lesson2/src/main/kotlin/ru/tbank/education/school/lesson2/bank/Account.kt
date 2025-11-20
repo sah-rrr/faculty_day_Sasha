@@ -1,6 +1,6 @@
 package ru.tbank.education.school.lesson2.bank
 
-open class Account(
+open class Account (
     val id: String,
     var balance: Double,
     val customerId: String
@@ -22,20 +22,17 @@ class CreditAccount(
     id: String,
     balance: Double,
     customerId: String,
-    creditLimit: Double,
-) : Account(
+): Account(
     id,
     balance,
-    customerId,
 ) {
     var creditLimit = creditLimit
 
     override fun withdraw(amount: Double): Boolean {
-      if (creditLimit + balance >= amount) {
-          balance -= amount
-          return true
-      }
+        if (creditLimit + balance >= amount) {
+            balance -= amount
+            return true
+        }
         return false
     }
 }
-
