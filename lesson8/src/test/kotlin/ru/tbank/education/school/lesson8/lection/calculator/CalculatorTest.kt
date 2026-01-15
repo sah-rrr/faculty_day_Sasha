@@ -1,5 +1,6 @@
 package ru.tbank.education.school.lesson8.lection.calculator
 
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -27,6 +28,7 @@ class CalculatorTest {
         val result = calc.add(2, 3)
         // Assert
         assertEquals(5, result)
+        result shouldBe 5
     }
 
     @ParameterizedTest(name = "multiply {0} * {1} = {2}")
