@@ -3,7 +3,6 @@
 ## Задание 1. Поиск ошибок в логах
 Найти все строки со словом ERROR во всех логах в каталоге logs (включая logs/old) и сохранить их в файл errors.txt в корне проекта.
 
-Решение:
 ```bash
 grep -r "ERROR" logs > errors.txt
 ```
@@ -11,8 +10,6 @@ grep -r "ERROR" logs > errors.txt
 ## Задание 2. Архивация старых логов
 Создать каталог archived/ в корне проекта и переместить туда все файлы из logs/old.
 
-
-Решение:
 ```bash
 mkdir -p archived/
 mv logs/old/* archived/
@@ -21,8 +18,6 @@ mv logs/old/* archived/
 ## Задание 3. Подсчёт размера логов
 Посчитать общий размер каталога logs и записать результат в logs_size.txt.
 
-
-Решение:
 ```bash
 du -sh logs > logs_size.txt
 ```
@@ -30,8 +25,6 @@ du -sh logs > logs_size.txt
 ## Задание 4. Нахождение самого большого лог-файла
 Найти самый большой файл в каталоге logs (без учёта подкаталогов) и записать его имя в файл biglog.txt.
 
-
-Решение:
 ```bash
 ls -S logs | head -n 1 > biglog.txt
 ```
@@ -39,8 +32,6 @@ ls -S logs | head -n 1 > biglog.txt
 ## Задание 5. Подсчёт количества логов
 Подсчитать количество файлов с расширением .log во всём каталоге logs и сохранить результат в log_count.txt.
 
-
-Решение:
 ```bash
 find logs -type f -name "*.log" | wc -l > log_count.txt
 ```
@@ -48,19 +39,15 @@ find logs -type f -name "*.log" | wc -l > log_count.txt
 ## Задание 6. Поиск конфигурационных параметров
 Найти во всех config/*.conf строки, содержащие слово "host", и записать в host_params.txt.
 
-
-Решение:
 ```bash
-find logs -type f -name "*.conf" | grep -r "host" > host_params.txt
+find config -type f -name "*.conf" | grep -r "host" config/*/conf > host_params.txt
 ```
 
 ## Задание 7. Создание резервного архива конфигов
 Создать zip-архив config_backup.zip, содержащий все файлы из config/.
 
-
-Решение:
 ```bash
-zip -r config_backup.zip logs/config
+zip -r config_backup.zip config/
 ```
 
 ## Задание 8. Создание общего резервного архива
@@ -69,19 +56,15 @@ zip -r config_backup.zip logs/config
 - все *.log из logs (включая old/)
 - файл errors.txt (если он есть)
 
-
-Решение:
 ```bash
-zip -r profect_backup.zip logs/config/*.conf logs/*.logs logs/old/*.logs errors.txt
+zip -r profect_backup.zip config/*.conf logs/*.log logs/old/*.log errors.txt
 ```
 
 ## Задание 9. Очистка пустых строк в логах
 Создать файл cleaned_app.log, содержащий содержимое app.log без пустых строк.
 
-
-Решение:
 ```bash
-grep -v "^$" logs/app.logs > cleaned_app.logs
+grep -v "^$" app.log > cleaned_app.log
 ```
 
 ## Задание 10. Подсчёт количества строк в каждом конфиге
@@ -90,10 +73,8 @@ app.conf 12
 db.conf 8  
 (где число — количество строк в файле)
 
-
-Решение:
 ```bash
-wc -l logs/config/*.conf | awk '{print $2, $1}' | head -n 1 > conf_stats.txt
+wc -l config/*.conf | awk '{print $2, $1}' | head -n 1 > conf stats.txt
 ```
 
 
@@ -110,7 +91,7 @@ wc -l logs/config/*.conf | awk '{print $2, $1}' | head -n 1 > conf_stats.txt
 - Не использовать сторонние библиотеки для архивирования (только стандартный API).
 - Программа должна выводить в консоль список добавляемых файлов и их размер.
 
-### Решение:
+
 ```bash
 import java.io.*
 import java.nio.file.*
