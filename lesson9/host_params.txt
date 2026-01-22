@@ -1,0 +1,4 @@
+./README.md:Найти во всех config/*.conf строки, содержащие слово "host", и записать в host_params.txt.
+./README.md:find logs -type f -name "*.conf" | grep -r "host" > host_params.txt
+./logs/config/app.conf:host=localhost
+./logs/config/db.conf:host=127.0.0.1
