@@ -51,7 +51,7 @@ find logs -type f -name "*.log" | wc -l > log_count.txt
 
 Решение:
 ```bash
-find config -type f -name "*.conf" | grep -r "host" config/*/conf > host_params.txt
+find logs -type f -name "*.conf" | grep -r "host" > host_params.txt
 ```
 
 ## Задание 7. Создание резервного архива конфигов
@@ -60,7 +60,7 @@ find config -type f -name "*.conf" | grep -r "host" config/*/conf > host_params.
 
 Решение:
 ```bash
-zip -r config_backup.zip config/
+zip -r config_backup.zip logs/config
 ```
 
 ## Задание 8. Создание общего резервного архива
@@ -72,7 +72,7 @@ zip -r config_backup.zip config/
 
 Решение:
 ```bash
-zip -r profect_backup.zip config/*.conf logs/*.log logs/old/*.log errors.txt
+zip -r profect_backup.zip logs/config/*.conf logs/*.logs logs/old/*.logs errors.txt
 ```
 
 ## Задание 9. Очистка пустых строк в логах
@@ -81,7 +81,7 @@ zip -r profect_backup.zip config/*.conf logs/*.log logs/old/*.log errors.txt
 
 Решение:
 ```bash
-grep -v "^$" app.log > cleaned_app.log
+grep -v "^$" logs/app.logs > cleaned_app.logs
 ```
 
 ## Задание 10. Подсчёт количества строк в каждом конфиге
@@ -93,7 +93,7 @@ db.conf 8
 
 Решение:
 ```bash
-wc -l config/*.conf | awk '{print $2, $1}' | head -n 1 > conf stats.txt
+wc -l logs/config/*.conf | awk '{print $2, $1}' | head -n 1 > conf_stats.txt
 ```
 
 
