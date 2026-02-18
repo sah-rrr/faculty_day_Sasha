@@ -1,0 +1,40 @@
+package ru.tbank.education.school.lesson11
+
+import kotlinx.coroutines.*
+import java.util.concurrent.atomic.AtomicInteger
+
+/**
+ * 
+ * Задание: Исправьте гонку данных в этом классе любым из известных вам способов
+ * 
+ * Проблема: Несколько корутин одновременно увеличивают счетчик `value`,
+ * что приводит к потере некоторых инкрементов из-за race condition.
+ */
+class SafeCounterAtomic {
+
+    private val value = AtomicInteger(0)
+
+    suspend fun increment() {
+        delay(1)
+        value.incrementAndGet()
+    }
+
+    fun getValue(): Int = value.get()
+
+    suspend fun runConcurrentIncrements(
+        coroutineCount: Int = 10,
+        incrementsPerCoroutine: Int = 1000
+    ): Int = coroutineScope {
+
+        val jobs = List(coroutineCount) {
+            launch(Dispatchers.Default) {
+                repeat(incrementsPerCoroutine) {
+                    increment()
+                }
+            }
+        }
+
+        jobs.joinAll()
+        getValue()
+    }
+}
