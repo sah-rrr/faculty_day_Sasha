@@ -5,9 +5,17 @@
  * For more detailed information on multi-project builds, please refer to https://docs.gradle.org/8.9/userguide/multi_project_builds.html in the Gradle documentation.
  */
 
-plugins {
-    // Apply the foojay-resolver plugin to allow automatic download of JDKs
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    plugins {
+        kotlin("jvm") version "1.9.25"
+        kotlin("plugin.spring") version "1.9.25"
+        id("org.springframework.boot") version "3.2.5"
+        id("io.spring.dependency-management") version "1.1.5"
+    }
 }
 
 rootProject.name = "faculty_day"
@@ -22,3 +30,5 @@ include("lesson7")
 include("lesson8")
 //include("lesson9")
 include("lesson10")
+include("lesson11")
+include("lesson12")

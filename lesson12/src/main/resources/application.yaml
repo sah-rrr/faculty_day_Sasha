@@ -1,0 +1,6 @@
+book:
+  max-size: 5
+  forbidden-authors:
+    - "Anonymous"
+    - "Unknown"
+  filter-category: "Fiction"
