@@ -24,7 +24,8 @@ import com.google.gson.Gson
 
 fun main() {
     // ===== TODO 1: Собрать JWT =====
-    println("=== 1. Собрать JWT ===\n")
+    println("=== 1. Собрать JWT ===")
+    println()
 
     val header = mapOf(
         "alg" to "HS256",
@@ -48,7 +49,7 @@ fun main() {
 
     println("Header (JSON): $headerJson")
     println("Header (Base64): $headerBase64")
-    println("\nPayload (JSON): $payloadJson")
+    println("Payload (JSON): $payloadJson")
     println("Payload (Base64): $payloadBase64")
 
     val signature = "simulated_signature_for_demo"
@@ -56,7 +57,7 @@ fun main() {
         .encodeToString(signature.toByteArray())
 
     val jwt = "$headerBase64.$payloadBase64.$signatureBase64"
-    println("\nПолный JWT токен: $jwt")
+    println("Полный JWT токен: $jwt")
 
     // ===== TODO 2: Декодировать JWT =====
     println("\n=== 2. Декодировать JWT ===\n")
@@ -127,7 +128,7 @@ fun main() {
 
     println("Оригинальный payload: $payloadJson")
     println("Поддельный payload: $fakePayloadJson")
-    println("\nПоддельный JWT: $fakeJwt")
+    println("Поддельный JWT: $fakeJwt")
 
     val urlWithFakeToken = URL("https://httpbin.org/bearer")
     val connectionWithFakeToken = urlWithFakeToken.openConnection() as HttpURLConnection
@@ -141,7 +142,7 @@ fun main() {
         connectionWithFakeToken.errorStream?.bufferedReader()?.readText() ?: "Нет тела ответа"
     }
 
-    println("\nКод ответа с поддельным токеном: $codeWithFakeToken")
+    println("Код ответа с поддельным токеном: $codeWithFakeToken")
     println("Тело ответа: $responseWithFakeToken")
     connectionWithFakeToken.disconnect()
 }
