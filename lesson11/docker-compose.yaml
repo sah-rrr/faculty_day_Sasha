@@ -1,0 +1,4 @@
+services:
+  lesson11:
+    build: .
+    container_name: lesson11

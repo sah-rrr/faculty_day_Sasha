@@ -1,9 +1,14 @@
 plugins {
     kotlin("jvm")
+    application
 }
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass.set("ru.tbank.education.school.lesson11.Lesson11Kt")
+}
 
 repositories {
     mavenCentral()
@@ -16,4 +21,12 @@ dependencies {
 
 kotlin {
     jvmToolchain(17)
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "ru.tbank.education.school.lesson11.Lesson11Kt"
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
