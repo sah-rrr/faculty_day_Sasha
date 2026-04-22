@@ -21,7 +21,6 @@ plugins {
 }
 
 rootProject.name = "faculty_day"
-include("lesson1")
 include("lesson2")
 include("lesson3")
 //include("lesson4")
